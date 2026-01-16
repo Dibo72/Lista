@@ -23,14 +23,14 @@ public class Lista {
                     tarea = sc.nextLine();
                     lista.add(tarea);
                     break;
-                //Se necesita dar una posicion que no sea la ultima ni mayor
+                //Se necesita dar una posicion que no sea la ultima ni mayor ni menor o igual a 0
                 case 2:
                     System.out.println("Introduce la tarea que desea insertar:");
                     tarea = sc.nextLine();
                     System.out.println("Introduce la posicion donde la desea insertar:");
                     int posicion = sc.nextInt();
                     //en caso que se introduzca alguna de estas 2 se mostrara un mensaje y no se hara nada
-                    if(posicion>lista.size()){
+                    if(posicion>lista.size() || posicion<=0){
                         System.out.println("Posicion no valida");
                     }else {
                         lista.add((posicion-1), tarea);
