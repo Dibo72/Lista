@@ -1,88 +1,54 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Random;
 public class Lista {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Random rand = new Random();
-        List<Integer> lista = new ArrayList<>();
-        int j=0;
-        int i=0;
-        String buscar;
-        int cont=0;
+        List<String> lista = new ArrayList<>();
+        int j = 3;
+        String tarea;
+        while(j==3){
+            System.out.println("¿Que dsea hacer? (1=Introducir tarea final, 2=Insertar tarea en posicion, 3= Eliminar una tarea, 4=Mostrar 0=cerrar )");
+            int opcion = sc.nextInt();
+            sc.nextLine();
+            switch (opcion) {
+                //si se eloige la opcion 0, el programa acaba
+                case 0:
+                    j = 0;
+                    System.out.println("Programa cerrado");
+                    break;
+                //Como se introdyce siempre al final, no hace falta dar la posicion
+                case 1:
+                    System.out.println("Introduce la tarea que desea insertar:");
+                    tarea = sc.nextLine();
+                    lista.add(tarea);
+                    break;
+                //Se necesita dar una posicion que no sea la ultima ni mayor
+                case 2:
+                    System.out.println("Introduce la tarea que desea insertar:");
+                    tarea = sc.nextLine();
+                    System.out.println("Introduce la posicion donde la desea insertar:");
+                    int posicion = sc.nextInt();
+                    //en caso que se introduzca alguna de estas 2 se mostrara un mensaje y no se hara nada
+                    if(posicion>lista.size()){
+                        System.out.println("Posicion no valida");
+                    }else {
+                        lista.add((posicion-1), tarea);
+                    }
+                    break;
+                //introduciendo la posicion se accede a la tarea y la elimina
+                case 3:
+                    System.out.println("Introduce la posicion de la tarea que desea eliminar:");
+                    lista.remove((sc.nextInt()-1));
+                    break;
+                //recorre la lista y la muestra
+                case 4:
+                    for (String s : lista) {
+                        System.out.println(s);
+                    }
+                    break;
 
-        for (int l=0;l<100;l++){
-            lista.add(rand.nextInt(49)+1);
-            System.out.print(lista.get(l) + " ");
-        }
-        System.out.println();
-        System.out.println("Numero mayor: "+buscarMayor(lista));
-        System.out.println("Numero menor: " + buscarMenor(lista));
-        System.out.println("Suma de numeros: " + sumaNumeros(lista));
-        System.out.println("Numeros mayores que 30: " + mayores30(lista));
-        System.out.println("Numeros mayores a 45: " + mayores45(lista));
-        System.out.println("Numeros menores que 15: " + menores15(lista));
-    }
-
-    public static int buscarMayor(List<Integer> lista){
-        int mayor=0;
-        for(Integer i : lista){
-            if(i>mayor){
-                mayor=i;
             }
         }
-        return mayor;
-    }
-
-    public static int sumaNumeros(List<Integer> lista){
-        int suma=0;
-        for(Integer i : lista){
-            suma+=i;
-        }
-        return suma;
-    }
-
-    public static int buscarMenor(List<Integer> lista){
-        int menor=50;
-        for(Integer i : lista){
-            if(i<menor){
-                menor=i;
-            }
-        }
-        return menor;
-    }
-
-    public static int mayores30(List<Integer> lista){
-        int mayor=30;
-        int contador=0;
-        for(Integer i : lista){
-            if(i>mayor){
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-    public static int mayores45(List<Integer> lista){
-        int mayor=45;
-        int contador=0;
-        for(Integer i : lista){
-            if(i>mayor){
-                contador++;
-            }
-        }
-        return contador;
-    }
-
-    public static int menores15(List<Integer> lista) {
-        int menor = 15;
-        int contador = 0;
-        for (Integer i : lista) {
-            if (i < menor) {
-                contador++;
-            }
-        }
-        return contador;
     }
 }
